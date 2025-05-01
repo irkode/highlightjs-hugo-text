@@ -1,0 +1,72 @@
+&lt;!doctype html&gt;
+&lt;html
+  class=&quot;h-full antialiased scheme-light dark:scheme-dark&quot;
+  lang=&quot;<span class="hljs-template-tag">{{</span> <span class="hljs-built_in">or</span> <span class="hljs-built_in">site</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">Language</span><span class="hljs-property">.LanguageCode</span> `en-US` <span class="hljs-template-tag">}}</span>&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Title</span> <span class="hljs-template-tag">}}</span>
+    &lt;/title&gt;
+    &lt;style&gt;
+      [x-cloak] {
+        display: none !important;
+      }
+    &lt;/style&gt;
+    &lt;meta
+      name=&quot;description&quot;
+      content=&quot;<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Description</span> <span class="hljs-operator">|</span> <span class="hljs-built_in">default</span> <span class="hljs-built_in">site</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.description</span> <span class="hljs-template-tag">}}</span>&quot;&gt;
+    <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/head/head-js.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">with</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">templates.Defer</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">dict</span> <span class="hljs-string">&quot;key&quot;</span> <span class="hljs-string">&quot;global&quot;</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$t</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">debug.Timer</span> <span class="hljs-string">&quot;tailwindcss&quot;</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">with</span> <span class="hljs-built_in">resources.Get</span> <span class="hljs-string">&quot;css/styles.css&quot;</span> <span class="hljs-template-tag">}}</span>
+        <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$opts</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">dict</span>
+          <span class="hljs-string">&quot;inlineImports&quot;</span> <span class="hljs-literal">true</span>
+          <span class="hljs-string">&quot;minify&quot;</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">not</span> <span class="hljs-built_in">hugo.IsDevelopment</span><span class="hljs-punctuation">)</span>
+        <span class="hljs-template-tag">}}</span>
+        <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">with</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-operator">|</span> <span class="hljs-built_in">css.TailwindCSS</span> <span class="hljs-template-variable">$opts</span> <span class="hljs-template-tag">}}</span>
+          <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;helpers/linkcss.html&quot;</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">dict</span> <span class="hljs-string">&quot;r&quot;</span> <span class="hljs-template-variable context_">.</span><span class="hljs-punctuation">)</span> <span class="hljs-template-tag">}}</span>
+        <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$t</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">Stop</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$noop</span> <span class="hljs-operator">:=</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">WordCount</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Page</span><span class="hljs-property">.Store.Get</span> <span class="hljs-string">&quot;hasMath&quot;</span> <span class="hljs-template-tag">}}</span>
+      &lt;link
+        href=&quot;https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css&quot;
+        rel=&quot;stylesheet&quot;&gt;
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/head/head.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+  &lt;/head&gt;
+  &lt;body
+    class=&quot;flex flex-col min-h-full bg-white dark:bg-blue-950 kind-<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Kind</span> <span class="hljs-template-tag">}}</span>&quot;&gt;
+    <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/hooks/body-start.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span><span class="hljs-comment">
+    {{/* Layout. */}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">block</span> <span class="hljs-string">&quot;header&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/header/header.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">block</span> <span class="hljs-string">&quot;hero&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+    &lt;div class=&quot;flex w-full xl:w-6xl h-full flex-auto mx-auto&quot;&gt;
+      &lt;main
+        class=&quot;flex-1 mx-auto lg:mx-0 w-full max-w-3x lg:max-w-3x pt-8 lg:pt-14 pb-20 px-main print:pt-0&quot;&gt;
+        <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/hooks/body-main-start.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+        <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">block</span> <span class="hljs-string">&quot;main&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span><span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+      &lt;/main&gt;
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">block</span> <span class="hljs-string">&quot;rightsidebar&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+        &lt;aside
+          class=&quot;py-15 ml-4 xl:ml-12 w-60 hidden lg:relative lg:block lg:flex-none&quot;&gt;
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">block</span> <span class="hljs-string">&quot;rightsidebar_content&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span><span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+        &lt;/aside&gt;
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+    &lt;/div&gt;<span class="hljs-comment">
+    {{/* Common icons. */}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/icons.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span><span class="hljs-comment">
+    {{/* Common templates. */}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/templates.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span><span class="hljs-comment">
+    {{/* Footer. */}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">block</span> <span class="hljs-string">&quot;footer&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/footer.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/hooks/body-end.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+  &lt;/body&gt;
+&lt;/html&gt;

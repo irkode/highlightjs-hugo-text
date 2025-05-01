@@ -41,9 +41,9 @@ Highlight.js.
 
 ```javascript
 var hljs = require("highlight.js");
-var hljsHugoTemplate = require("highlightjs-hugo");
+var hljsHugo = require("highlightjs-hugo");
 
-hljs.registerLanguage("highlightjs-hugo", hljsHugoTpl);
+hljs.registerLanguage("highlightjs-hugo", hljsHugo);
 hljs.highlightAll();
 ```
 

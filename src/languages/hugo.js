@@ -2,7 +2,7 @@
 Language: Hugo Template
 Author: Irkode <irkode@rikode.de>
 Description: Matcher for Hugo template language.
-Website: https://irkopde.github.io/highlightjs-hugotpl
+Website: https://irkopde.github.io/highlightjs-hugo
 Category: template
 */
 

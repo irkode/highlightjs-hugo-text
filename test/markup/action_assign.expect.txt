@@ -1,0 +1,2 @@
+<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$var</span> <span class="hljs-operator">:=</span> pipeline <span class="hljs-template-tag">}}</span>
+<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$var</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">partialCached</span> <span class="hljs-template-tag">}}</span>

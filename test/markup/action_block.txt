@@ -1,0 +1,7 @@
+{{- block "name" ( context ) }}
+{{- block "name/block" ( context ) }}
+
+{{- template "name" ( context ) }}
+{{- template "_partial/name" ( context ) }}
+{{- template "name" ( context ) }}
+

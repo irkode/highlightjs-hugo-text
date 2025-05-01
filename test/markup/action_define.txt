@@ -1,0 +1,7 @@
+{{- define "name" }}
+{{- define "name" a }}
+{{- define "one/two/three" }}
+
+{{- template "name" }}
+{{- template "name" a }}
+{{- template "one/two/three" }}
