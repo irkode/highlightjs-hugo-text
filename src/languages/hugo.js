@@ -10,23 +10,6 @@ import * as kw from './keywords.js'
 
 export default function (hljs) {
 
-   // known words to style at action level
-   const ACTION_KEYWORDS = {
-      $pattern: /\w+/,
-      'keyword': kw.KEYWORD,
-   };
-   // known words to style a pipeline
-   const PIPELINE_KEYWORDS = {
-      $pattern: /\w+/,
-      'built_in': kw.BUILT_IN,
-      'literal': kw.LITERAL,
-   };
-   // known words to style at the start of a DOT word chain
-   const FUNCTION_KEYWORDS = {
-      $pattern: /\w+\.\w+/,
-      'built_in': kw.FUNCTION,
-   };
-
    // names for block, define and template
    const re_TEMPLATE_NAME = /"([a-zA-Z_]\w*)(\/[a-zA-Z_]\w*)*"/
 
