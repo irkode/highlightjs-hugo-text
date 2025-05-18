@@ -1,7 +1,7 @@
 /*
 Language: Hugo Template
 Author: Irkode <irkode@rikode.de>
-Description: Matcher for Hugo template language.
+Description: Go templating grammar for Hugo
 Website: https://irkopde.github.io/highlightjs-hugo
 Category: template
 */
@@ -183,8 +183,8 @@ export default function (hljs) {
       relevance: 5,
       contains: [PIPELINE_MODE],
    }
-   const ACTION_VARVAR_MODE = {
-      // scope: 'ACTION_VARVAR_MODE',
+   const ACTION_RANGE_MODE = {
+      // scope: 'ACTION_RANGE_MODE',
       begin: [re_ACTION_OPEN, /\s*/, /range/, /\s+/, re_VARIABLE, /\s*/, /,/, /\s*/, re_VARIABLE, /\s*/, /\:?\=/],
       beginScope: { 1: 'template-tag', 5: 'template-variable', 7: 'punctuation', 9: 'template-variable', 11: 'operator' },
       keywords: ACTION_KEYWORDS,
@@ -228,7 +228,7 @@ export default function (hljs) {
                ACTION_BLOCK_MODE,
                ACTION_ASSIGN_MODE,
                ACTION_VAR_MODE,
-               ACTION_VARVAR_MODE,
+               ACTION_RANGE_MODE,
                ACTION_COMMAND_MODE,
                // generic pipeline without initial keyword
                ACTION_PIPELINE_MODE,
