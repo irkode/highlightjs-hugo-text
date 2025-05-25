@@ -50,7 +50,7 @@ export default function (hljs) {
    const PIPE_FUNCTION_MODE = {
       // scope: 'PIPE_FUNCTION_MODE',
       begin: kw.FUNCTION_REGEX,
-      keywords: FUNCTION_KEYWORDS,
+    keywords: kw.FUNCTION_KEYWORDS,
       contains: [METHOD_CHAIN_HELPER]
    };
    // one word identifier followed by a DOT a function object that calls a method
@@ -60,7 +60,7 @@ export default function (hljs) {
          { begin: /\w+(?=\.)/, contains: [METHOD_CHAIN_HELPER] },
          { match: /\w+/ }
       ],
-      keywords: PIPELINE_KEYWORDS,
+    keywords: kw.PIPELINE_KEYWORDS,
    };
 
    //template variable
@@ -119,7 +119,7 @@ export default function (hljs) {
       // scope: 'ACTION_ASSIGN',
       begin: [re_ACTION_OPEN, /\s*/, re_VARIABLE, /\s*/, /\:?\=/],
       beginScope: { 1: 'template-tag', 3: 'template-variable', 5: 'operator' },
-      keywords: ACTION_KEYWORDS,
+    keywords: kw.ACTION_KEYWORDS,
       relevance: 5,
       contains: [PIPELINE_MODE],
    };
@@ -128,7 +128,7 @@ export default function (hljs) {
       // scope: 'ACTION_BLOCK_MODE',
       begin: [re_ACTION_OPEN, /\s*/, /block|template/, /\s*/, re_TEMPLATE_NAME, /\s*/],
       beginScope: { 1: 'template-tag', 5: 'string' },
-      keywords: ACTION_KEYWORDS,
+    keywords: kw.ACTION_KEYWORDS,
       relevance: 5,
       contains: [PIPELINE_MODE],
    };
@@ -137,7 +137,7 @@ export default function (hljs) {
       // scope: 'ACTION_COMMAND_MODE',
       begin: [re_ACTION_OPEN, /\s*/, /else\s+if|if|range|return|try|with/, /\s*/],
       beginScope: { 1: 'template-tag' },
-      keywords: ACTION_KEYWORDS,
+    keywords: kw.ACTION_KEYWORDS,
       relevance: 5,
       contains: [PIPELINE_MODE],
    };
@@ -147,7 +147,7 @@ export default function (hljs) {
       begin: [re_ACTION_OPEN, /\s*/, /define|template/, /\s*/, re_TEMPLATE_NAME, /\s*/, re_ACTION_CLOSE,],
       beginScope: { 1: 'template-tag', 5: 'string', 7: 'template-tag', },
       relevance: 5,
-      keywords: ACTION_KEYWORDS,
+    keywords: kw.ACTION_KEYWORDS,
    };
 
    const ACTION_KEYWORD_MODE = {
@@ -155,14 +155,14 @@ export default function (hljs) {
       begin: [re_ACTION_OPEN, /\s*/, /break|continue|else|end/, /\s*/, re_ACTION_CLOSE],
       beginScope: { 1: 'template-tag', 5: 'template-tag' },
       relevance: 5,
-      keywords: ACTION_KEYWORDS,
+    keywords: kw.ACTION_KEYWORDS,
    };
 
    const ACTION_VAR_MODE = {
       // scope: 'ACTION_VAR_MODE',
       begin: [re_ACTION_OPEN, /\s*/, /range|else\s+with|with/, /\s+/, re_VARIABLE, /\s*/, /\:?\=/],
       beginScope: { 1: 'template-tag', 5: 'template-variable', 7: 'operator' },
-      keywords: ACTION_KEYWORDS,
+    keywords: kw.ACTION_KEYWORDS,
       relevance: 5,
       contains: [PIPELINE_MODE],
    }
@@ -170,7 +170,7 @@ export default function (hljs) {
       // scope: 'ACTION_RANGE_MODE',
       begin: [re_ACTION_OPEN, /\s*/, /range/, /\s+/, re_VARIABLE, /\s*/, /,/, /\s*/, re_VARIABLE, /\s*/, /\:?\=/],
       beginScope: { 1: 'template-tag', 5: 'template-variable', 7: 'punctuation', 9: 'template-variable', 11: 'operator' },
-      keywords: ACTION_KEYWORDS,
+    keywords: kw.ACTION_KEYWORDS,
       relevance: 5,
       contains: [PIPELINE_MODE],
    };
@@ -178,7 +178,7 @@ export default function (hljs) {
    const ACTION_PIPELINE_MODE = {
       // scope: 'ACTION_PIPELINE_MODE',
       begin: [re_ACTION_OPEN], beginScope: { 1: 'template-tag', },
-      keywords: PIPELINE_KEYWORDS,
+    keywords: kw.PIPELINE_KEYWORDS,
       contains: [PIPELINE_MODE],
    };
 
@@ -189,7 +189,7 @@ export default function (hljs) {
          'hugo-tpl'
       ],
       case_insensitive: false,
-      //subLanguage: '',
+    // subLanguage: [],
       ignoreIllegals: false,
       contains: [
          hljs.COMMENT(re_COMMENT_OPEN, re_COMMENT_CLOSE, { relevance: 5, }),
@@ -203,7 +203,7 @@ export default function (hljs) {
                { begin: /\{\{- /, returnBegin: true, relevance: 5, },
                { begin: /\{\{(?!-)/, returnBegin: true, },
             ],
-            keywords: ACTION_KEYWORDS,
+        keywords: kw.ACTION_KEYWORDS,
             contains: [
                ACTION_KEYWORD_MODE,
                ACTION_DEFINE_MODE,
