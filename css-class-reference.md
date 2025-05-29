@@ -1,3 +1,7 @@
+---
+title: Class reference
+---
+
 # Highlight-JS Hugo - Class reference
 
 ## Core modes used
@@ -16,7 +20,7 @@ We use the following classes to style our output
 
 - property
 
-   We style every dot word chain as propery except if it starts with a _built_in_. In these cases we use _built_in_ for
+   We style every dot word chain as property except if it starts with a _built_in_. In these cases we use _built_in_ for
    the start (one or two words). see also _title.function.invoke_ below.
 
 - punctuation
