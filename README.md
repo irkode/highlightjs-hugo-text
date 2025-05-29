@@ -59,8 +59,7 @@ This package is released under the MIT License. See [LICENSE](LICENSE) file for 
 
 ## Links
 
-- [HighlightJS Hugo](https://github.com/irkode/highlightjs-hugo) <!-- {{ github-logo }} -->
-  [![](github-mark.svg)](https://irkode.github.com/highlightjs-hugo)
+- [HighlightJS Hugo](https://github.com/irkode/highlightjs-hugo) - [GitHub](https://irkode.github.com/highlightjs-hugo)
 
 - Highlight.js Library
 
