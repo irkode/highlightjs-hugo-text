@@ -1,8 +1,10 @@
 # Hugo Template Language Grammar for Highlight.js
 
-![license](https://badgen.net/badge/license/MIT/blue)
+[![license](https://badgen.net/badge/license/MIT/blue)](LICENSE)
 
-A language grammar for HuGo's templating language for Highlight.js.
+A language grammar to highlight [Hugo](https://gohugo.io)'s templating language with Highlight.js.
+
+- [CSS class reference](css-class-reference.md)
 
 ## Usage
 
@@ -57,9 +59,19 @@ This package is released under the MIT License. See [LICENSE](LICENSE) file for 
 
 ## Links
 
-- The homapge for highlight.JS Hugo <https://github.com/irkode/highlightjs-hugo>
-- The official site for the Highlight.js library is <https://highlightjs.org/>.
-- The Highlight.js GitHub project: <https://github.com/highlightjs/highlight.js>
-- The official site for Go templating language
+- [HighlightJS Hugo](https://github.com/irkode/highlightjs-hugo) <!-- {{ github-logo }} -->
+  [![](github-mark.svg)](https://irkode.github.com/highlightjs-hugo)
+
+- Highlight.js Library
+
+   - Homepage: <https://highlightjs.org/>.
+   - GitHub: <https://github.com/highlightjs/highlight.js>
+
+- Hugo
+
+   - Homepage: <https://gohugo.io/>.
+   - GitHub: <https://github.com/gohugoio/hugo>
+
+- Go templating language
    - https://pkg.go.dev/text/template
    - https://pkg.go.dev/html/template
