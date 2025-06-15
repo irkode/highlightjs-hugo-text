@@ -59,18 +59,12 @@ This package is released under the MIT License. See [LICENSE](LICENSE) file for 
 
 ## Links
 
-- [HighlightJS Hugo Homepage](https://irkode.github.com/highlightjs-hugo) -
+- [HighlightJS Hugo](https://irkode.github.com/highlightjs-hugo) -
   [[view on GitHub]](https://github.com/irkode/highlightjs-hugo)
 
-- Highlight.js Library
+- [Highlight.js](https://highlightjs.org/) - [[view on GitHub]](https://github.com/highlightjs/highlight.js)
 
-   - Homepage: <https://highlightjs.org/>.
-   - GitHub: <https://github.com/highlightjs/highlight.js>
-
-- Hugo
-
-   - Homepage: <https://gohugo.io/>.
-   - GitHub: <https://github.com/gohugoio/hugo>
+- [Hugo](https://gohugo.io/) - [[view on GitHub]](https://github.com/gohugoio/hugo)
 
 - Go templating language
    - https://pkg.go.dev/text/template
