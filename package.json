@@ -2,7 +2,7 @@
   "name": "highlightjs-hugo",
   "version": "0.1.0",
   "description": "Hugo Template Language Grammar for Highlight.js",
-  "main": "src/languages/hugo.js",
+  "main": "src/languages/hugo-text.js",
   "scripts": {
     "test": "mocha test",
     "test-markup": "mocha test/markup"
