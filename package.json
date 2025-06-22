@@ -1,5 +1,5 @@
 {
-  "name": "highlightjs-hugo",
+  "name": "highlightjs-hugo-text",
   "version": "0.1.0",
   "description": "Hugo Template Language Grammar for Highlight.js",
   "main": "src/languages/hugo-text.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/irkdode/highlightjs-hugo.git"
+    "url": "https://github.com/irkdode/highlightjs-hugo-text.git"
   },
   "keywords": [
     "hugo",
@@ -17,7 +17,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/irkode/highlightjs-hugo/issues"
+    "url": "https://github.com/irkdode/highlightjs-hugo-text/issues"
   },
-  "homepage": "https://github.com/highlightjs/highlightjs-hugo"
+  "homepage": "https://github.com/irkdode/highlightjs-hugo-text"
 }

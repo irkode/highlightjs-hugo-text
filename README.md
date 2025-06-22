@@ -16,7 +16,7 @@ Simply load the module after loading Highlight.js. Take the minified version fro
 
 ```html
 <script type="text/javascript" src="/path/to/highlight.min.js"></script>
-<script type="text/javascript" src="/path/to/highlightjs-hugo.min.js"></script>
+<script type="text/javascript" src="/path/to/highlightjs-hugo-text.min.js"></script>
 <script type="text/javascript">
    hljs.highlightAll();
 </script>
@@ -29,7 +29,7 @@ Simply load the module after loading Highlight.js. Take the minified version fro
 ```html
 <script
    type="text/javascript"
-   src="https://unpkg.com/highlightjs-hugo@0.1.0/dist/highlightjs-hugo.min.js"
+   src="https://unpkg.com/highlightjs-hugo-text@0.1.0/dist/highlightjs-hugo-text.min.js"
 ></script>
 ```
 
@@ -43,9 +43,9 @@ Highlight.js.
 
 ```javascript
 var hljs = require("highlight.js");
-var hljsHugo = require("highlightjs-hugo");
+var hljsHugo = require("highlightjs-hugo-text");
 
-hljs.registerLanguage("highlightjs-hugo", hljsHugo);
+hljs.registerLanguage("highlightjs-hugo-text", hljsHugo);
 hljs.highlightAll();
 ```
 
@@ -59,8 +59,8 @@ This package is released under the MIT License. See [LICENSE](LICENSE) file for 
 
 ## Links
 
-- [HighlightJS Hugo](https://irkode.github.com/highlightjs-hugo) -
-  [[view on GitHub]](https://github.com/irkode/highlightjs-hugo)
+- [HighlightJS Hugo](https://irkode.github.com/highlightjs-hugo-text) -
+  [[view on GitHub]](https://github.com/irkode/highlightjs-hugo-text)
 
 - [Highlight.js](https://highlightjs.org/) - [[view on GitHub]](https://github.com/highlightjs/highlight.js)
 
