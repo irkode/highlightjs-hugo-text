@@ -1,4 +1,4 @@
-# Hugo Template Language Grammar for Highlight.js
+# Hugo TEXT Template Language Grammar for Highlight.js
 
 [![license](https://badgen.net/badge/license/MIT/blue)](LICENSE)
 
