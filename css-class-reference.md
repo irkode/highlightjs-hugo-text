@@ -12,7 +12,7 @@ title: Class reference
 
 ## Scopes (Classes) explicitly set with hugo.js
 
-We use the following classes to style our output
+We use the following classes to style our output. make sure your style defines these.
 
 - operator
 
@@ -41,13 +41,13 @@ We use the following classes to style our output
 
 - template-variable.context
 
-   The _Context_ is a special thing in Hugo templating so have a special class here. You may define that to create a
-   different visual appearance for the _Context_ and a variable.
+   The _Context_ is a special thing in Hugo templating so we added a special class here. Use that in your CSS to create
+   a different visual appearance for _Context_. Without it will be styled same as `template-variable`.
 
 - title.function.invoke
 
    If a _built_in_ is followed by a _dot_ this must be an object. Knowing it's something special and it definitely calls
-   something we style it using the `invoke` subclass of _title.function_
+   something we style it using the `invoke` subclass of _title.function_ Default fallback rules apply.
 
 ## Keywords used
 
@@ -65,5 +65,5 @@ We use the common keywords based on standard Go templating adjusted for Hugo
 
    as documented in [Hugo - Functions](https://gohugo.io/functions/) except the _keywords_ above.
 
-   Hugo's functions usually have a namespace and for those used often an alias is defined. We style both as _built_in_.
-   Example `strings.Replace` and the alias `replace`.
+   Hugo's functions are namespaced and for those used often an alias without namespace is defined. We style both as
+   _built_in_. Example `strings.Replace` and it's alias `replace`.
