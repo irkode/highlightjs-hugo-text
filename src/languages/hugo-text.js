@@ -8,6 +8,36 @@ Category: template
 
 export default function (hljs) {
 
+   // names for block, define and template
+   const re_TEMPLATE_NAME = /"([a-zA-Z_]\w*)(\/[a-zA-Z_]\w*)*"/
+
+   // action comments
+   const re_COMMENT_OPEN = /\s*(\{\{- \/\*|\{\{\/\*)/;
+   const re_COMMENT_CLOSE = /\*\/ -\}\}|\*\/\}\}/;
+
+   // action commands
+   const re_ACTION_OPEN = /\{\{- |\{\{(?!-)/;
+   const re_ACTION_CLOSE = / -\}\}|(?<! -)\}\}/;
+
+   // template variables
+   const re_VARIABLE = /\$\w+/;
+
+   // standalone context -> always list last to not capture variables or paths
+   const PIPE_OPERATOR_MODE = { scope: 'operator', match: /\|/, };
+   const CONTEXT_ONLY_MODE = { scope: 'template-variable.context', match: /\.|\$/ };
+   const DOT_PROPERTY_CHAIN = { scope: 'property', match: /(\.\w+)+/ };
+
+   const METHOD_CHAIN_HELPER = {
+      // scope: METHOD_CHAIN_HELPER',
+      variants: [
+         // used after a builtin or function has been detected before
+         { begin: [/\./, /\w+/], beginScope: { 1: 'property', 2: 'title.function.invoke', }, },
+         // method submode - starting with a WORD
+         { begin: [/\w+/], beginScope: { 1: 'title.function.invoke', }, },
+      ],
+      contains: [DOT_PROPERTY_CHAIN],
+   };
+
 // START: H4H keyword based generated code
 const H4H_BUILT_IN = [
   "findRESubmatch",
@@ -406,21 +436,21 @@ const H4H_LITERAL = [
   "nil"
 ];
 
-const H4H_FUNCTION_REGEX = /\b(cast.ToFloat| cast.ToInt| cast.ToString| collections.After| collections.Append| collections.Apply| collections.Complement| collections.Delimit| collections.Dictionary| collections.First| collections.Group| collections.In| collections.Index| collections.Intersect| collections.IsSet| collections.KeyVals| collections.Last| collections.Merge| collections.NewScratch| collections.Querify| collections.Reverse| collections.Seq| collections.Shuffle| collections.Slice| collections.Sort| collections.SymDiff| collections.Union| collections.Uniq| collections.Where| compare.Conditional| compare.Default| compare.Eq| compare.Ge| compare.Gt| compare.Le| compare.Lt| compare.Ne| crypto.FNV32a| crypto.HMAC| crypto.MD5| crypto.SHA1| crypto.SHA256| css.PostCSS| css.Sass| css.TailwindCSS| data.GetCSV| data.GetJSON| debug.Dump| debug.Timer| diagrams.Goat| encoding.Base64Decode| encoding.Base64Encode| encoding.Jsonify| fmt.Errorf| fmt.Erroridf| fmt.Print| fmt.Printf| fmt.Println| fmt.Warnf| fmt.Warnidf| hash.FNV32a| hash.XxHash| hugo.BuildDate| hugo.CommitHash| hugo.Deps| hugo.Environment| hugo.Generator| hugo.GoVersion| hugo.IsDevelopment| hugo.IsExtended| hugo.IsMultihost| hugo.IsMultilingual| hugo.IsProduction| hugo.IsServer| hugo.Store| hugo.Version| hugo.WorkingDir| images.AutoOrient| images.Brightness| images.ColorBalance| images.Colorize| images.Config| images.Contrast| images.Dither| images.Filter| images.Gamma| images.GaussianBlur| images.Grayscale| images.Hue| images.Invert| images.Mask| images.Opacity| images.Overlay| images.Padding| images.Pixelate| images.Process| images.QR| images.Saturation| images.Sepia| images.Sigmoid| images.Text| images.UnsharpMask| inflect.Humanize| inflect.Pluralize| inflect.Singularize| js.Babel| js.Batch| js.Build| lang.FormatAccounting| lang.FormatCurrency| lang.FormatNumber| lang.FormatNumberCustom| lang.FormatPercent| lang.Merge| lang.Translate| math.Abs| math.Acos| math.Add| math.Asin| math.Atan| math.Atan2| math.Ceil| math.Cos| math.Counter| math.Div| math.Floor| math.Log| math.Max| math.MaxInt64| math.Min| math.Mod| math.ModBool| math.Mul| math.Pi| math.Pow| math.Product| math.Rand| math.Round| math.Sin| math.Sqrt| math.Sub| math.Sum| math.Tan| math.ToDegrees| math.ToRadians| openapi3.Unmarshal| os.FileExists| os.Getenv| os.ReadDir| os.ReadFile| os.Stat| partials.Include| partials.IncludeCached| path.Base| path.BaseName| path.Clean| path.Dir| path.Ext| path.Join| path.Split| reflect.IsMap| reflect.IsSlice| resources.Babel| resources.ByType| resources.Concat| resources.Copy| resources.ExecuteAsTemplate| resources.Fingerprint| resources.FromString| resources.Get| resources.GetMatch| resources.GetRemote| resources.Match| resources.Minify| resources.PostCSS| resources.PostProcess| resources.ToCSS| safe.CSS| safe.HTML| safe.HTMLAttr| safe.JS| safe.JSStr| safe.URL| strings.Diff| strings.Chomp| strings.Contains| strings.ContainsAny| strings.ContainsNonSpace| strings.Count| strings.CountRunes| strings.CountWords| strings.FindRE| strings.FindRESubmatch| strings.FirstUpper| strings.HasPrefix| strings.HasSuffix| strings.Repeat| strings.Replace| strings.ReplaceRE| strings.RuneCount| strings.SliceString| strings.Split| strings.Substr| strings.Title| strings.ToLower| strings.ToUpper| strings.Trim| strings.TrimLeft| strings.TrimPrefix| strings.TrimRight| strings.TrimSpace| strings.TrimSuffix| strings.Truncate| templates.Current| templates.Defer| templates.Exists| time.AsTime| time.Duration| time.Format| time.In| time.Now| time.ParseDuration| transform.CanHighlight| transform.Emojify| transform.Highlight| transform.HighlightCodeBlock| transform.HTMLEscape| transform.HTMLUnescape| transform.Markdownify| transform.Plainify| transform.PortableText| transform.Remarshal| transform.ToMath| transform.Unmarshal| transform.XMLEscape| urls.AbsLangURL| urls.AbsURL| urls.Anchorize| urls.JoinPath| urls.Parse| urls.Ref| urls.RelLangURL| urls.RelRef| urls.RelURL| urls.URLize)\b/; 
+const H4H_FUNCTION_REGEX = /\b(collections\.(Complement|Dictionary|NewScratch|Intersect|KeyVals|Delimit|SymDiff|Shuffle|Reverse|Querify|Append|Union|Slice|Merge|After|IsSet|Index|Group|First|Apply|Where|Uniq|Sort|Last|Seq|In)|transform\.(HighlightCodeBlock|CanHighlight|HTMLUnescape|PortableText|Markdownify|HTMLEscape|Highlight|Remarshal|Unmarshal|XMLEscape|Plainify|Emojify|ToMath)|templates\.(Current|Exists|Defer)|resources\.(ExecuteAsTemplate|Fingerprint|PostProcess|FromString|GetRemote|GetMatch|PostCSS|ByType|Concat|Minify|Babel|Match|ToCSS|Copy|Get)|partials\.(IncludeCached|Include)|diagrams\.Goat|encoding\.(Base64Decode|Base64Encode|Jsonify)|openapi3\.Unmarshal|reflect\.(IsSlice|IsMap)|inflect\.(Singularize|Pluralize|Humanize)|strings\.(ContainsNonSpace|FindRESubmatch|SliceString|ContainsAny|CountRunes|CountWords|TrimPrefix|FirstUpper|TrimSuffix|TrimSpace|TrimRight|RuneCount|HasPrefix|HasSuffix|ReplaceRE|Truncate|Contains|TrimLeft|ToUpper|ToLower|Replace|Substr|Repeat|FindRE|Split|Count|Chomp|Title|Trim|Diff)|compare\.(Conditional|Default|Eq|Ge|Gt|Le|Lt|Ne)|images\.(ColorBalance|GaussianBlur|UnsharpMask|Saturation|AutoOrient|Brightness|Grayscale|Contrast|Colorize|Pixelate|Sigmoid|Process|Padding|Overlay|Opacity|Filter|Dither|Config|Invert|Gamma|Sepia|Mask|Text|Hue|QR)|crypto\.(FNV32a|SHA256|HMAC|SHA1|MD5)|debug\.(Timer|Dump)|time\.(ParseDuration|Duration|AsTime|Format|Now|In)|path\.(BaseName|Clean|Split|Base|Join|Dir|Ext)|safe\.(HTMLAttr|JSStr|HTML|CSS|URL|JS)|cast\.(ToString|ToFloat|ToInt)|urls\.(AbsLangURL|RelLangURL|Anchorize|JoinPath|AbsURL|RelRef|RelURL|URLize|Parse|Ref)|math\.(ToRadians|ToDegrees|MaxInt64|ModBool|Counter|Product|Floor|Round|Atan2|Ceil|Atan|Rand|Sqrt|Asin|Acos|Sum|Sin|Tan|Sub|Min|Mul|Mod|Max|Log|Div|Cos|Add|Pow|Abs|Pi)|lang\.(FormatNumberCustom|FormatAccounting|FormatCurrency|FormatPercent|FormatNumber|Translate|Merge)|hugo\.(IsMultilingual|IsDevelopment|IsProduction|Environment|IsMultihost|CommitHash|IsExtended|WorkingDir|BuildDate|Generator|GoVersion|IsServer|Version|Store|Deps)|hash\.(FNV32a|XxHash)|data\.(GetJSON|GetCSV)|fmt\.(Erroridf|Println|Warnidf|Errorf|Printf|Print|Warnf)|css\.(TailwindCSS|PostCSS|Sass)|os\.(FileExists|ReadFile|ReadDir|Getenv|Stat)|js\.(Babel|Batch|Build))\b/; 
 
 const H4H_ACTION_KEYWORDS = {
   $pattern: /\w+/,
-  'keyword': KEYWORD,
+  'keyword': H4H_KEYWORD,
 };
 
 const H4H_PIPELINE_KEYWORDS = {
    $pattern: /\w+/,
-   'built_in': BUILT_IN,
-   'literal': LITERAL,
+   'built_in': H4H_BUILT_IN,
+   'literal': H4H_LITERAL,
 };
 const H4H_FUNCTION_KEYWORDS = {
    $pattern: /\w+\.\w+/,
-   'built_in': FUNCTION,
+   'built_in': H4H_FUNCTION,
 };
 
 const PIPE_FUNCTION_MODE = {
@@ -431,35 +461,7 @@ const PIPE_FUNCTION_MODE = {
 };
 // END: H4H keyword based generated code
 
-   // names for block, define and template
-   const re_TEMPLATE_NAME = /"([a-zA-Z_]\w*)(\/[a-zA-Z_]\w*)*"/
 
-   // action comments
-   const re_COMMENT_OPEN = /\s*(\{\{- \/\*|\{\{\/\*)/;
-   const re_COMMENT_CLOSE = /\*\/ -\}\}|\*\/\}\}/;
-
-   // action commands
-   const re_ACTION_OPEN = /\{\{- |\{\{(?!-)/;
-   const re_ACTION_CLOSE = / -\}\}|(?<! -)\}\}/;
-
-   // template variables
-   const re_VARIABLE = /\$\w+/;
-
-   // standalone context -> always list last to not capture variables or paths
-   const PIPE_OPERATOR_MODE = { scope: 'operator', match: /\|/, };
-   const CONTEXT_ONLY_MODE = { scope: 'template-variable.context', match: /\.|\$/ };
-   const DOT_PROPERTY_CHAIN = { scope: 'property', match: /(\.\w+)+/ };
-
-   const METHOD_CHAIN_HELPER = {
-      // scope: METHOD_CHAIN_HELPER',
-      variants: [
-         // used after a builtin or function has been detected before
-         { begin: [/\./, /\w+/], beginScope: { 1: 'property', 2: 'title.function.invoke', }, },
-         // method submode - starting with a WORD
-         { begin: [/\w+/], beginScope: { 1: 'title.function.invoke', }, },
-      ],
-      contains: [DOT_PROPERTY_CHAIN],
-   };
    // method chain - starting with a context DOT
    const PIPE_CONTEXT_MODE = {
       // scope: 'PIPE_CONTEXT_MODE',
@@ -486,7 +488,7 @@ const PIPE_FUNCTION_MODE = {
       ],
    };
 
-   // there's no way to know which end token has been captured, so we shift anayzing to a new mode
+   // there's no way to know which end token has been captured, so we shift analyzing to a new mode
    // needed to not treat a . after a closing paren as template-variable.context
    const PIPE_EXPRESSION_MODE = {
       // scope: 'PIPE_EXPRESSION',
@@ -604,7 +606,7 @@ const PIPE_FUNCTION_MODE = {
       case_insensitive: false,
       ignoreIllegals: false,
       contains: [
-         hljs.COMMENT(re_COMMENT_OPEN, re_COMMENT_CLOSE, { relevance: 5, }),
+         hljs.COMMENT(re_COMMENT_OPEN, re_COMMENT_CLOSE, { relevance: 10, }),
          // stop highlighting if a handlebars begin tag is found
          { begin: /\{\{(#|>|!--|!)/, end: /\}\}/, illegal: /.*/, },
          // start sub mode to avoid highlighting keywords outside a template action
@@ -612,7 +614,7 @@ const PIPE_FUNCTION_MODE = {
             // scope: 'TEMPLATE_ACTION'
             // raise relevance for special hugo template tag '{{- '
             variants: [
-               { begin: /\{\{- /, returnBegin: true, relevance: 5, },
+               { begin: /\{\{- /, returnBegin: true, relevance: 10, },
                { begin: /\{\{(?!-)/, returnBegin: true, },
             ],
             keywords: H4H_ACTION_KEYWORDS,
