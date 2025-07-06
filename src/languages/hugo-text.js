@@ -1,5 +1,6 @@
 /*
 Language: Hugo Template
+
 Author: Irkode <irkode@rikode.de>
 Description: Go templating grammar for Hugo
 Website: https://irkopde.github.io/highlightjs-hugo
