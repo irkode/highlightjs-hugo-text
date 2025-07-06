@@ -1,5 +1,0 @@
-{{/* this also tests open/close template tags */}}
-{{ break }}
-{{- continue }}
-{{ else -}}
-{{- end -}}

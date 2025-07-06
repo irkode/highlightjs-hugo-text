@@ -1,5 +1,0 @@
-{{ .Page }}
-{{ .Page.Pages }}
-{{ .1 "hello" }}
-{{ .site.b.c }}
-{{ . }}

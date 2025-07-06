@@ -1,4 +1,0 @@
-<span class="hljs-template-tag">{{</span> <span class="hljs-built_in">hugo.Generator</span> <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{</span> <span class="hljs-built_in">hugo.Generator</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">a</span><span class="hljs-property">.b.c</span> <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{</span> <span class="hljs-built_in">hugo.Store</span> <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{</span> <span class="hljs-built_in">hugo.Store</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">Set</span><span class="hljs-property">.b.c</span> <span class="hljs-template-tag">}}</span>

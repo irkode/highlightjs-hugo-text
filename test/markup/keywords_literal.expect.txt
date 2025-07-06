@@ -1,3 +1,0 @@
-<span class="hljs-template-tag">{{</span> <span class="hljs-literal">false</span> <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{</span> <span class="hljs-literal">nil</span> <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{</span> <span class="hljs-literal">true</span> <span class="hljs-template-tag">}}</span>

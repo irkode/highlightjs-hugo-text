@@ -1,5 +1,0 @@
-{{ $var }}
-{{ $x.Page }}
-{{ $x.Page.Pages }}
-{{ $var. }}
-{{ $var.site.b.c }}

@@ -1,7 +1,0 @@
-<span class="hljs-template-tag">{{- </span><span class="hljs-keyword">define</span> <span class="hljs-string">&quot;name&quot;</span> <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{- </span>define <span class="hljs-string">&quot;name&quot;</span> a <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{- </span><span class="hljs-keyword">define</span> <span class="hljs-string">&quot;one/two/three&quot;</span> <span class="hljs-template-tag">}}</span>
-
-<span class="hljs-template-tag">{{- </span><span class="hljs-keyword">template</span> <span class="hljs-string">&quot;name&quot;</span> <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{- </span><span class="hljs-keyword">template</span> <span class="hljs-string">&quot;name&quot;</span> a <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{- </span><span class="hljs-keyword">template</span> <span class="hljs-string">&quot;one/two/three&quot;</span> <span class="hljs-template-tag">}}</span>

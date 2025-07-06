@@ -1,4 +1,0 @@
-{{- if ( pipeline ) }}
-{{- else if ( pipeline ) }}
-{{- range ( pipeline ) }}
-{{- with ( pipeline ) }}

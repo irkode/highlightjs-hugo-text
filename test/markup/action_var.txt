@@ -1,4 +1,0 @@
-{{- range $r := ( pipeline ) }}
-{{- range $r = ( pipeline ) }}
-{{- with $w := ( pipeline ) }}
-{{- with $w = ( pipeline ) }}

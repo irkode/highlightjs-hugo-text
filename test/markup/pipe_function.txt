@@ -1,4 +1,0 @@
-{{ hugo.Generator }}
-{{ hugo.Generator.a.b.c }}
-{{ hugo.Store }}
-{{ hugo.Store.Set.b.c }}

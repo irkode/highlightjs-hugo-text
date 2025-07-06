@@ -1,5 +1,0 @@
-<span class="hljs-comment">{{/* this also tests open/close template tags */}}</span>
-<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">break</span> <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{- </span><span class="hljs-keyword">continue</span> <span class="hljs-template-tag">}}</span>
-<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">else</span><span class="hljs-template-tag"> -}}</span>
-<span class="hljs-template-tag">{{- </span><span class="hljs-keyword">end</span><span class="hljs-template-tag"> -}}</span>
