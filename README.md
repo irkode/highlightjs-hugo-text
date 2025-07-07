@@ -24,10 +24,10 @@ Handlebars and still make it win for its own templates.
 
 Known limitation:
 
-If you include `hugo-html` and `hugo.text` i'm unsure which one will win. Educated guess is that the HTML variant will
-win if you have enough HTML around the template code. If not, not. or dieferent.
+We are unsure what happens if you include include `hugo-html` and `hugo.text`. Maybe the HTML variant will win if
+there's enough HTML around. Maybe not, maybe dependent on import order...
 
-If you need to use both modules, you always can specify the specific language for a code block.
+In most cases you want the `hugo-html` module only. If not, specify the language for each code block in that case.
 
 ## Usage
 
@@ -82,8 +82,10 @@ This package is released under the MIT License. See [LICENSE](LICENSE) file for 
 
 ## Links
 
-- [HighlightJS Hugo](https://irkode.github.com/highlightjs-hugo-text) -
-  [[view on GitHub]](https://github.com/irkode/highlightjs-hugo-text)
+- HighlightJS Hugo modules:
+
+   - [HighlightJS - Hugo HTML](https://github.com/irkode/highlightjs-hugo-html)
+   - [HighlightJS - Hugo TEXT](https://github.com/irkode/highlightjs-hugo-text)
 
 - [Highlight.js](https://highlightjs.org/) - [[view on GitHub]](https://github.com/highlightjs/highlight.js)
 
@@ -92,4 +94,15 @@ This package is released under the MIT License. See [LICENSE](LICENSE) file for 
 - Go templating language
    - https://pkg.go.dev/html/template
    - https://pkg.go.dev/text/template
+
+---
+
+This module is generated from a private repo, which as of now is a quite evil hack...
+
+- scans the hugoDocs for functions and built_ins
+- builds the javascript highlighter from a template
+- generates the supplemental files needed by highlight.js
+- populates the testcases depending on the variant
+- runs build and tests
+- pushes the updated stuff to the module repositories
 
