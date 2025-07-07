@@ -1,0 +1,80 @@
+<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">define</span> <span class="hljs-string">&quot;main&quot;</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$ttop</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">debug.Timer</span> <span class="hljs-string">&quot;single&quot;</span> <span class="hljs-template-tag">}}</span>
+  &lt;article class=&quot;max-w-5xl lg:max-w-3xl&quot; id=&quot;article&quot;&gt;
+    <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/docsheader.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+    &lt;div class=&quot;content&quot;&gt;
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">with</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.description</span> <span class="hljs-template-tag">}}</span>
+        &lt;div class=&quot;lead&quot;&gt;
+          <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-operator">|</span> <span class="hljs-built_in">markdownify</span> <span class="hljs-template-tag">}}</span>
+        &lt;/div&gt;
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.show_publish_date</span> <span class="hljs-template-tag">}}</span>
+        <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">with</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">PublishDate</span> <span class="hljs-template-tag">}}</span>
+          &lt;p
+            class=&quot;text-gray-500 dark:text-gray-400 text-sm/5 md:text-base/2 mb-2 sm:mb-4&quot;&gt;
+            <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/date.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+          &lt;/p&gt;
+        <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$t</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">debug.Timer</span> <span class="hljs-string">&quot;single.categories&quot;</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$categories</span> <span class="hljs-operator">:=</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">GetTerms</span> <span class="hljs-string">&quot;categories&quot;</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">with</span> <span class="hljs-template-variable">$categories</span> <span class="hljs-template-tag">}}</span>
+        &lt;div class=&quot;mb-4 sm:mb-6 flex flex-wrap gap-2&quot;&gt;
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">range</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+            <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$text</span> <span class="hljs-operator">:=</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">LinkTitle</span> <span class="hljs-template-tag">}}</span>
+            <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$class</span> <span class="hljs-operator">:=</span> <span class="hljs-string">&quot;&quot;</span> <span class="hljs-template-tag">}}</span>
+            <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">range</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">slice</span> <span class="hljs-literal">true</span> <span class="hljs-literal">false</span> <span class="hljs-punctuation">)</span> <span class="hljs-template-tag">}}</span>
+              <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$color</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;helpers/funcs/color-from-string.html&quot;</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">dict</span> <span class="hljs-string">&quot;text&quot;</span> <span class="hljs-template-variable">$text</span> <span class="hljs-string">&quot;dark&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-string">&quot;--single&quot;</span> <span class="hljs-string">&quot;green&quot;</span> <span class="hljs-punctuation">)</span> <span class="hljs-template-tag">}}</span>
+
+              <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$prefix</span> <span class="hljs-operator">:=</span> <span class="hljs-string">&quot;&quot;</span> <span class="hljs-template-tag">}}</span>
+              <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+                <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$prefix</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;dark:&quot;</span> <span class="hljs-template-tag">}}</span>
+              <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+              <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$class</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%sbg-%s-%d %stext-%s-%d border %sborder-%s-%d&quot;</span>
+                <span class="hljs-template-variable">$prefix</span> <span class="hljs-template-variable">$color</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">color</span> <span class="hljs-template-variable">$color</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">shade1</span>
+                <span class="hljs-template-variable">$prefix</span> <span class="hljs-template-variable">$color</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">color</span> <span class="hljs-template-variable">$color</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">shade2</span>
+                <span class="hljs-template-variable">$prefix</span> <span class="hljs-template-variable">$color</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">color</span> <span class="hljs-template-variable">$color</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">shade3</span>
+              <span class="hljs-template-tag">}}</span>
+            <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+
+
+            &lt;a
+              href=&quot;<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">RelPermalink</span> <span class="hljs-template-tag">}}</span>&quot;
+              class=&quot;<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$class</span> <span class="hljs-template-tag">}}</span> text-xs h-auto tracking-widest uppercase font-light not-prose no-underline inline-block py-1 px-3 rounded-xl shadow-xs hover:opacity-80 hover:shadow-none&quot;&gt;
+              <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">LinkTitle</span> <span class="hljs-template-tag">}}</span>
+            &lt;/a&gt;
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+        &lt;/div&gt;
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$t</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">Stop</span> <span class="hljs-template-tag">}}</span>
+
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.functions_and_methods.signatures</span> <span class="hljs-template-tag">}}</span>
+        &lt;div class=&quot;mb-4 not-prose&quot;&gt;
+          <span class="hljs-template-tag">{{- </span><span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;docs/functions-signatures.html&quot;</span> <span class="hljs-template-variable context_">.</span><span class="hljs-template-tag"> -}}</span>
+          <span class="hljs-template-tag">{{- </span><span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;docs/functions-return-type.html&quot;</span> <span class="hljs-template-variable context_">.</span><span class="hljs-template-tag"> -}}</span>
+          <span class="hljs-template-tag">{{- </span><span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;docs/functions-aliases.html&quot;</span> <span class="hljs-template-variable context_">.</span><span class="hljs-template-tag"> -}}</span>
+        &lt;/div&gt;
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$t</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">debug.Timer</span> <span class="hljs-string">&quot;single.content&quot;</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Content</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$t</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">Stop</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$t</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">debug.Timer</span> <span class="hljs-string">&quot;single.page-edit&quot;</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/page-edit.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$t</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">Stop</span> <span class="hljs-template-tag">}}</span>
+    &lt;/div&gt;
+  &lt;/article&gt;
+  <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$ttop</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">Stop</span> <span class="hljs-template-tag">}}</span>
+<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+
+<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">define</span> <span class="hljs-string">&quot;rightsidebar_content&quot;</span> <span class="hljs-template-tag">}}</span><span class="hljs-comment">
+  {{/* in-this-section.html depends on these being reneredc first. */}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$related</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/related.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$toc</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/toc.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-built_in">not</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.hide_in_this_section</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/in-this-section.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$related</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-template-variable context_">$</span><span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Store</span><span class="hljs-property">.Get</span> <span class="hljs-string">&quot;hasToc&quot;</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$toc</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>

@@ -1,0 +1,2 @@
+{{ $var := pipeline }}
+{{ $var = partialCached }}

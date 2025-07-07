@@ -1,0 +1,2 @@
+{{- range $r,$x := ( pipeline ) }}
+{{- range $r , $x = ( pipeline ) }}

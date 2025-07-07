@@ -1,0 +1,69 @@
+<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">define</span> <span class="hljs-string">&quot;main&quot;</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$pages</span> <span class="hljs-operator">:=</span> <span class="hljs-string">&quot;&quot;</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">IsPage</span> <span class="hljs-template-tag">}}</span><span class="hljs-comment">
+    {{/* We currently have a slightly odd content structure with no top level /docs section. */}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$pages</span> <span class="hljs-operator">=</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">CurrentSection</span><span class="hljs-property">.Pages</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">else</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$pages</span> <span class="hljs-operator">=</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Pages</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-built_in">eq</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Section</span> <span class="hljs-string">&quot;news&quot;</span> <span class="hljs-template-tag">}}</span>
+      <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$pages</span> <span class="hljs-operator">=</span> <span class="hljs-template-variable">$pages</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">ByPublishDate</span><span class="hljs-property">.Reverse</span> <span class="hljs-template-tag">}}</span>
+    <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+
+
+  &lt;article class=&quot;&quot;&gt;
+    <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/docsheader.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+    &lt;div class=&quot;mt-6 sm:mt-8 grid grid-cols-2 xl:grid-cols-3 gap-4 min-h-40&quot;&gt;
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">range</span> <span class="hljs-template-variable">$pages</span> <span class="hljs-template-tag">}}</span>
+        <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-built_in">eq</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-variable context_">$</span> <span class="hljs-template-tag">}}</span>
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">continue</span> <span class="hljs-template-tag">}}</span>
+        <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+        &lt;a
+          class=&quot;flex col-span-1 a--block cursor-pointer flex-col group border p-3 sm:p-4 hover:shadow-md dark:shadow-slate-800 border-gray-300 dark:border-gray-800 m-0&quot;
+          href=&quot;<span class="hljs-template-tag">{{</span> <span class="hljs-built_in">or</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.permalink</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">RelPermalink</span> <span class="hljs-template-tag">}}</span>&quot;&gt;
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.show_publish_date</span> <span class="hljs-template-tag">}}</span>
+            <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">with</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">PublishDate</span> <span class="hljs-template-tag">}}</span>
+              &lt;p
+                class=&quot;text-gray-500 dark:text-gray-400 text-sm/5 md:text-base/2 mb-2 sm:mb-4&quot;&gt;
+                <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;layouts/date.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+              &lt;/p&gt;
+            <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+          &lt;h3
+            class=&quot;text-lg/6 md:text-2xl tracking-tight p-0 -mt-1 sm:mt-0 mb-1 sm:mb-2 text-primary group-hover:text-primary/70 overflow-hidden&quot;&gt;
+            <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">LinkTitle</span> <span class="hljs-template-tag">}}</span>
+          &lt;/h3&gt;
+
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">with</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.functions_and_methods.signatures</span> <span class="hljs-template-tag">}}</span><span class="hljs-comment">
+            {{/* Set in functions and methods pages. */}}</span>
+            <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">with</span> <span class="hljs-template-variable">$signature</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">index</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-number">0</span> <span class="hljs-template-tag">}}</span>
+              <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-template-variable context_">$</span><span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.functions_and_methods.returnType</span> <span class="hljs-template-tag">}}</span>
+                <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$signature</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%s ⟼ %s&quot;</span> <span class="hljs-template-variable">$signature</span> <span class="hljs-template-variable context_">$</span><span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">context</span><span class="hljs-property">.Params.functions_and_methods.returnType</span> <span class="hljs-template-tag">}}</span>
+              <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+              &lt;div
+                class=&quot;font-mono font-light text-sm whitespace-nowrap mb-2 sm:mb-4 p-2 bg-slate-50 dark:bg-slate-700 border-0 mr-8 overflow-x-auto&quot;&gt;
+                <span class="hljs-template-tag">{{- </span><span class="hljs-template-variable">$signature</span><span class="hljs-template-tag"> -}}</span>
+              &lt;/div&gt;
+            <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+          &lt;p
+            class=&quot;text-black dark:text-gray-100 leading-6 text-sm md:text-base three-lines-ellipsis&quot;&gt;
+            <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-built_in">and</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">eq</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Section</span> <span class="hljs-string">&quot;commands&quot;</span><span class="hljs-punctuation">)</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">IsPage</span> <span class="hljs-template-tag">}}</span>
+              <span class="hljs-template-tag">{{</span> <span class="hljs-template-variable">$simpleCobraCommandShort</span> <span class="hljs-operator">:=</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">RawContent</span> <span class="hljs-operator">|</span> <span class="hljs-built_in">strings.ReplaceRE</span> `<span class="hljs-punctuation">(</span>?s<span class="hljs-punctuation">)</span>^##\s<span class="hljs-template-variable context_">.</span>+?\n\n<span class="hljs-punctuation">(</span><span class="hljs-template-variable context_">.</span>+?<span class="hljs-punctuation">)</span>\n\n<span class="hljs-template-variable context_">.</span>*` <span class="hljs-string">&quot;$1&quot;</span> <span class="hljs-template-tag">}}</span>
+              <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%s.&quot;</span> <span class="hljs-template-variable">$simpleCobraCommandShort</span> <span class="hljs-template-tag">}}</span>
+            <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">else</span> <span class="hljs-template-tag">}}</span>
+              <span class="hljs-template-tag">{{</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">or</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.description</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Summary</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|</span> <span class="hljs-built_in">plainify</span> <span class="hljs-operator">|</span> <span class="hljs-built_in">safeHTML</span> <span class="hljs-template-tag">}}</span>
+            <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+          &lt;/p&gt;
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">if</span> <span class="hljs-built_in">and</span> <span class="hljs-built_in">hugo.IsDevelopment</span> <span class="hljs-built_in">site</span><span class="hljs-property">.</span><span class="hljs-title function_ invoke__">Params</span><span class="hljs-property">.debug.display_page_metadata</span> <span class="hljs-template-tag">}}</span>
+            <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">partial</span> <span class="hljs-string">&quot;helpers/debug/list-item-metadata.html&quot;</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
+          <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+        &lt;/a&gt;
+      <span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+    &lt;/div&gt;
+  &lt;/article&gt;
+<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>
+
+<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">define</span> <span class="hljs-string">&quot;rightsidebar&quot;</span> <span class="hljs-template-tag">}}</span>
+  <span class="hljs-template-tag">{{</span> <span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%c&quot;</span> &#x27;\u00A0&#x27; <span class="hljs-template-tag">}}</span>
+<span class="hljs-template-tag">{{</span> <span class="hljs-keyword">end</span> <span class="hljs-template-tag">}}</span>

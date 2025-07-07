@@ -1,0 +1,24 @@
+{
+  "name": "highlightjs-hugo-text",
+  "version": "0.1.0",
+  "description": "Hugo TEXT Template Language Grammar for Highlight.js",
+  "main": "src/languages/hugo-text.js",
+  "scripts": {
+    "test": "mocha test",
+    "test-markup": "mocha test/markup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/irkdode/highlightjs-hugo-text.git"
+  },
+  "keywords": [
+    "hugo",
+    "template"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/irkdode/highlightjs-hugo-text/issues"
+  },
+  "homepage": "https://github.com/irkdode/highlightjs-hugo-text"
+}
+

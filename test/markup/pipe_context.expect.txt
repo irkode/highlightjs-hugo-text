@@ -1,0 +1,5 @@
+<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Page</span> <span class="hljs-template-tag">}}</span>
+<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">Page</span><span class="hljs-property">.Pages</span> <span class="hljs-template-tag">}}</span>
+<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">1</span> <span class="hljs-string">&quot;hello&quot;</span> <span class="hljs-template-tag">}}</span>
+<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span><span class="hljs-title function_ invoke__">site</span><span class="hljs-property">.b.c</span> <span class="hljs-template-tag">}}</span>
+<span class="hljs-template-tag">{{</span> <span class="hljs-template-variable context_">.</span> <span class="hljs-template-tag">}}</span>
