@@ -24,8 +24,8 @@ Handlebars and still make it win for its own templates.
 
 Known limitation:
 
-We are unsure what happens if you include include `hugo-html` and `hugo.text`. Maybe the HTML variant will win if
-there's enough HTML around. Maybe not, maybe dependent on import order...
+We are unsure what happens if you include both `hugo-html` and `hugo.text`. Maybe the HTML variant will win if there's
+enough HTML around. Maybe not, maybe dependent on import order...
 
 In most cases you want the `hugo-html` module only. If not, specify the language for each code block in that case.
 
@@ -38,7 +38,7 @@ Include the highlight.js library in your webpage or Node app, then load this mod
 Load the module after loading Highlight.js. Take the minified version from `dist` directory.
 
 ```html
-<script type="text/javascript" src="/path/to/hugo-highlight.min.js"></script>
+<script type="text/javascript" src="/path/to/highlight.min.js"></script>
 <script type="text/javascript" src="/path/to/hugo-text.min.js"></script>
 <script type="text/javascript">
    hljs.highlightAll();
